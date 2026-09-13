@@ -23,7 +23,7 @@ class JadwalRuanganController extends Controller
             $query->where('ruangan_id', $request->ruangan_id);
         }
         
-        $jadwals = $query->orderBy('tanggal', 'desc')->orderBy('waktu_mulai')->paginate(10);
+        $jadwals = $query->orderBy('tanggal', 'desc')->orderBy('jam_mulai')->paginate(10);
         $ruangans = Ruangan::with('lantai.gedung')->get();
         return view('admin.jadwal_ruangan.index', compact('jadwals', 'ruangans'));
     }
@@ -40,12 +40,12 @@ class JadwalRuanganController extends Controller
             'ruangan_id' => 'required|exists:ruangans,id',
             'kegiatan' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'waktu_mulai' => 'required|date_format:H:i',
-            'waktu_selesai' => 'required|date_format:H:i|after:waktu_mulai',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
             'keterangan' => 'nullable|string'
         ]);
 
-        if ($this->cekKonflik($request->ruangan_id, $request->tanggal, $request->waktu_mulai, $request->waktu_selesai)) {
+        if ($this->cekKonflik($request->ruangan_id, $request->tanggal, $request->jam_mulai, $request->jam_selesai)) {
             return back()->withInput()->with('error', 'Jadwal bentrok dengan jadwal lain pada ruangan, tanggal, dan waktu tersebut.');
         }
 
@@ -65,12 +65,12 @@ class JadwalRuanganController extends Controller
             'ruangan_id' => 'required|exists:ruangans,id',
             'kegiatan' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'waktu_mulai' => 'required|date_format:H:i',
-            'waktu_selesai' => 'required|date_format:H:i|after:waktu_mulai',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
             'keterangan' => 'nullable|string'
         ]);
 
-        if ($this->cekKonflik($request->ruangan_id, $request->tanggal, $request->waktu_mulai, $request->waktu_selesai, $jadwalRuangan->id)) {
+        if ($this->cekKonflik($request->ruangan_id, $request->tanggal, $request->jam_mulai, $request->jam_selesai, $jadwalRuangan->id)) {
             return back()->withInput()->with('error', 'Jadwal bentrok dengan jadwal lain pada ruangan, tanggal, dan waktu tersebut.');
         }
 
@@ -90,8 +90,8 @@ class JadwalRuanganController extends Controller
             ->where('tanggal', $tanggal)
             ->where(function($q) use ($mulai, $selesai) {
                 $q->where(function($q2) use ($mulai, $selesai) {
-                    $q2->whereTime('waktu_mulai', '<', $selesai)
-                       ->whereTime('waktu_selesai', '>', $mulai);
+                    $q2->whereTime('jam_mulai', '<', $selesai)
+                       ->whereTime('jam_selesai', '>', $mulai);
                 });
             });
             

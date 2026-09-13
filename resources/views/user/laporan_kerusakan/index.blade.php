@@ -9,10 +9,6 @@
             <a href="{{ route('user.laporan_kerusakan.create') }}" class="btn btn-danger fw-bold"><i class="fas fa-plus-circle me-1"></i> Buat Laporan Baru</a>
         </div>
 
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-light">

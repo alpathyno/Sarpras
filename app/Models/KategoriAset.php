@@ -10,6 +10,6 @@ class KategoriAset extends Model
 
     public function asets()
     {
-        return $this->hasMany(Aset::class);
+        return $this->hasMany(Aset::class, 'kategori_id');
     }
 }

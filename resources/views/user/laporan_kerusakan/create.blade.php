@@ -6,10 +6,6 @@
     <div class="card-body">
         <h5 class="card-title fw-bold text-danger mb-4"><i class="fas fa-exclamation-triangle me-2"></i> Lapor Kerusakan Aset</h5>
         
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
         <form action="{{ route('user.laporan_kerusakan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             

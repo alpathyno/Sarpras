@@ -17,9 +17,9 @@ class Peminjaman extends Model
     {
         return $this->belongsTo(User::class, 'disetujui_oleh');
     }
-    public function peminjamanDetails()
+    public function details()
     {
-        return $this->hasMany(PeminjamanDetail::class);
+        return $this->hasMany(PeminjamanDetail::class, 'peminjaman_id');
     }
     public function pengembalian()
     {

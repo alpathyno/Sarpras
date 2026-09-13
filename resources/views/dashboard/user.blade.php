@@ -1,54 +1,74 @@
 @extends('layouts.app')
 @section('title', 'Dashboard - SIM Sarpras')
-@section('page_title', 'Dashboard Personal')
+@section('page_title', 'Dashboard')
 @section('content')
-<div class="row mb-4">
-    <div class="col-md-3">
-        <div class="card bg-success text-white h-100 shadow-sm border-0">
-            <div class="card-body text-center">
-                <i class="fas fa-hand-holding fa-2x mb-2"></i>
-                <h2 class="mb-0 fw-bold">{{ $totalPeminjaman }}</h2>
-                <small>Total Riwayat Peminjaman</small>
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card accent-green p-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-label">Total Peminjaman</div>
+                    <div class="stat-value">{{ $totalPeminjaman }}</div>
+                </div>
+                <div class="stat-icon icon-green">
+                    <i class="fas fa-hand-holding"></i>
+                </div>
             </div>
+            <div class="stat-footer">Riwayat seluruh peminjaman</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card bg-secondary text-white h-100 shadow-sm border-0">
-            <div class="card-body text-center">
-                <i class="fas fa-hourglass-half fa-2x mb-2"></i>
-                <h2 class="mb-0 fw-bold">{{ $peminjamanPending }}</h2>
-                <small>Menunggu Persetujuan</small>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card accent-amber p-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-label">Menunggu Persetujuan</div>
+                    <div class="stat-value">{{ $peminjamanPending }}</div>
+                </div>
+                <div class="stat-icon icon-amber">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
             </div>
+            <div class="stat-footer">Belum diproses admin</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card bg-primary text-white h-100 shadow-sm border-0">
-            <div class="card-body text-center">
-                <i class="fas fa-check-circle fa-2x mb-2"></i>
-                <h2 class="mb-0 fw-bold">{{ $peminjamanAktif }}</h2>
-                <small>Peminjaman Aktif (Disetujui)</small>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card accent-blue p-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-label">Peminjaman Aktif</div>
+                    <div class="stat-value">{{ $peminjamanAktif }}</div>
+                </div>
+                <div class="stat-icon icon-blue">
+                    <i class="fas fa-check-circle"></i>
+                </div>
             </div>
+            <div class="stat-footer">Disetujui, sedang berjalan</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card bg-danger text-white h-100 shadow-sm border-0">
-            <div class="card-body text-center">
-                <i class="fas fa-bullhorn fa-2x mb-2"></i>
-                <h2 class="mb-0 fw-bold">{{ $totalLaporan }}</h2>
-                <small>Laporan Kerusakan Anda</small>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card accent-red p-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-label">Laporan Kerusakan</div>
+                    <div class="stat-value">{{ $totalLaporan }}</div>
+                </div>
+                <div class="stat-icon icon-red">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
             </div>
+            <div class="stat-footer">Total laporan Anda</div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-white fw-bold"><i class="fas fa-history me-2 text-success"></i> Riwayat Peminjaman Terakhir Anda</div>
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card border-0">
+            <div class="card-header"><i class="fas fa-history me-2 text-green"></i>Riwayat Peminjaman Terakhir</div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead class="table-light">
+                        <thead>
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Jenis</th>
@@ -68,11 +88,11 @@
                                     @else <span class="badge bg-danger">Ditolak</span> @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('user.peminjaman.show', $p->id) }}" class="btn btn-sm btn-info text-white"><i class="fas fa-eye"></i> Detail</a>
+                                    <a href="{{ route('user.peminjaman.show', $p->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-eye me-1"></i>Detail</a>
                                 </td>
                             </tr>
                             @empty
-                            <tr><td colspan="4" class="text-center text-muted">Belum ada peminjaman.</td></tr>
+                            <tr><td colspan="4" class="text-center text-muted py-4">Belum ada peminjaman.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -80,13 +100,19 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card shadow-sm border-0 h-100">
-            <div class="card-header bg-white fw-bold"><i class="fas fa-bolt me-2 text-warning"></i> Akses Cepat</div>
-            <div class="card-body">
-                <a href="{{ route('user.peminjaman.create') }}" class="btn btn-outline-success w-100 mb-3 text-start"><i class="fas fa-plus-circle me-2"></i> Ajukan Peminjaman Baru</a>
-                <a href="{{ route('user.laporan_kerusakan.create') }}" class="btn btn-outline-danger w-100 mb-3 text-start"><i class="fas fa-bullhorn me-2"></i> Laporkan Kerusakan Aset</a>
-                <a href="{{ route('user.jadwal.index') }}" class="btn btn-outline-primary w-100 text-start"><i class="fas fa-calendar-alt me-2"></i> Lihat Jadwal Ruangan</a>
+    <div class="col-lg-4">
+        <div class="card border-0 h-100">
+            <div class="card-header"></i>Akses Cepat</div>
+            <div class="card-body d-flex flex-column gap-2">
+                <a href="{{ route('user.peminjaman.create') }}" class="btn btn-outline-success text-start">
+                    <i class="fas fa-plus-circle me-2"></i>Ajukan Peminjaman Baru
+                </a>
+                <a href="{{ route('user.laporan_kerusakan.create') }}" class="btn btn-outline-danger text-start">
+                    <i class="fas fa-bullhorn me-2"></i>Laporkan Kerusakan Aset
+                </a>
+                <a href="{{ route('user.jadwal.index') }}" class="btn btn-outline-primary text-start">
+                    <i class="fas fa-calendar-alt me-2"></i>Lihat Jadwal Ruangan
+                </a>
             </div>
         </div>
     </div>

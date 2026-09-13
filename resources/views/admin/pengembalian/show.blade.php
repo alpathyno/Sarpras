@@ -9,10 +9,6 @@
             <a href="{{ route('admin.pengembalian.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
         </div>
         
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-bordered">
@@ -107,11 +103,25 @@
                             </div>
                             
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-success fw-bold" onclick="return confirm('Apakah Anda yakin barang/ruangan ini telah selesai digunakan/dikembalikan? Proses ini tidak dapat dibatalkan.')">
+                                <button type="button" class="btn btn-success fw-bold" id="btn-konfirmasi-kembali">
                                     <i class="fas fa-check-circle me-1"></i> Konfirmasi Selesai
                                 </button>
                             </div>
                         </form>
+                        <script>
+                            document.getElementById('btn-konfirmasi-kembali').addEventListener('click', function() {
+                                var form = this.closest('form');
+                                showConfirmModal({
+                                    title: 'Konfirmasi Pengembalian?',
+                                    message: 'Pastikan aset/barang sudah diterima dan kondisinya sudah diperiksa. Tindakan ini tidak dapat dibatalkan.',
+                                    btnText: 'Konfirmasi Pengembalian',
+                                    btnClass: 'btn-success',
+                                    iconClass: 'fas fa-undo-alt',
+                                    iconBg: 'icon-success',
+                                    onConfirm: function() { form.submit(); }
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
                 @endif

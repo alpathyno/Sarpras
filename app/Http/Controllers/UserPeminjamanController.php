@@ -59,8 +59,8 @@ class UserPeminjamanController extends Controller
                 $konflikJadwal = JadwalRuangan::where('ruangan_id', $request->ruangan_id)
                     ->where('tanggal', $currentDate)
                     ->where(function($q) use ($tglMulai, $tglSelesai) {
-                        $q->whereTime('waktu_mulai', '<', $tglSelesai->format('H:i:s'))
-                          ->whereTime('waktu_selesai', '>', $tglMulai->format('H:i:s'));
+                        $q->whereTime('jam_mulai', '<', $tglSelesai->format('H:i:s'))
+                          ->whereTime('jam_selesai', '>', $tglMulai->format('H:i:s'));
                     })->exists();
                     
                 if ($konflikJadwal) {

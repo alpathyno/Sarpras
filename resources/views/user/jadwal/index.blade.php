@@ -45,7 +45,7 @@
                     @forelse($jadwals as $j)
                     <tr>
                         <td class="fw-bold">{{ \Carbon\Carbon::parse($j->tanggal)->format('d M Y') }}</td>
-                        <td><span class="badge bg-secondary">{{ \Carbon\Carbon::parse($j->waktu_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($j->waktu_selesai)->format('H:i') }}</span></td>
+                        <td><span class="badge bg-secondary">{{ \Carbon\Carbon::parse($j->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($j->jam_selesai)->format('H:i') }}</span></td>
                         <td class="fw-bold text-success">{{ $j->ruangan->nama_ruangan }}</td>
                         <td>{{ $j->ruangan->lantai->gedung->nama }} (Lt.{{ $j->ruangan->lantai->nomor_lantai }})</td>
                         <td>{{ $j->kegiatan }}</td>
@@ -68,3 +68,4 @@
     </div>
 </div>
 @endsection
+

@@ -26,12 +26,6 @@
                 </div>
             </div>
         </form>
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-light">
@@ -52,7 +46,7 @@
                         <td>{{ $l->keterangan ?? '-' }}</td>
                         <td class="text-center">
                             <a href="{{ route('admin.lantai.edit', $l->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('admin.lantai.destroy', $l->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lantai ini?');">
+                            <form action="{{ route('admin.lantai.destroy', $l->id) }}" method="POST" class="d-inline form-delete">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>

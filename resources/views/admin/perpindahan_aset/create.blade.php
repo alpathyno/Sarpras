@@ -6,10 +6,6 @@
     <div class="card-body">
         <h5 class="card-title fw-bold text-success mb-4">Form Mutasi/Pemindahan Aset</h5>
         
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
         <form action="{{ route('admin.perpindahan_aset.store') }}" method="POST">
             @csrf
             
@@ -37,7 +33,7 @@
                     <option value="">-- Pilih Ruangan Tujuan --</option>
                     @foreach($ruangans as $r)
                         <option value="{{ $r->id }}" {{ old('ruangan_tujuan_id') == $r->id ? 'selected' : '' }}>
-                            {{ $r->nama_ruangan }} (Lantai {{ $r->lantai->nama_lantai ?? '-' }}, Gedung {{ $r->lantai->gedung->nama_gedung ?? '-' }})
+                            {{ $r->nama_ruangan }} &mdash; Gedung {{ $r->lantai->gedung->nama ?? '-' }}, Lantai {{ $r->lantai->nomor_lantai ?? '-' }}
                         </option>
                     @endforeach
                 </select>

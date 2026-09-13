@@ -6,10 +6,6 @@
     <div class="card-body">
         <h5 class="card-title fw-bold text-success mb-4">Pengajuan Peminjaman {{ ucfirst($jenis) }}</h5>
         
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
         <form action="{{ route('user.peminjaman.store') }}" method="POST">
             @csrf
             <input type="hidden" name="jenis" value="{{ $jenis }}">

@@ -26,7 +26,7 @@ class UserJadwalController extends Controller
             $query->where('ruangan_id', $request->ruangan_id);
         }
         
-        $jadwals = $query->orderBy('tanggal', 'asc')->orderBy('waktu_mulai')->paginate(15);
+        $jadwals = $query->orderBy('tanggal', 'asc')->orderBy('jam_mulai')->paginate(15);
         $ruangans = Ruangan::where('dapat_dipinjam', 1)->with('lantai.gedung')->get();
         return view('user.jadwal.index', compact('jadwals', 'ruangans'));
     }

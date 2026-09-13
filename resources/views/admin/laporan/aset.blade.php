@@ -32,7 +32,7 @@
                 <div class="col-md-6 d-flex justify-content-end gap-2">
                     <button type="submit" class="btn btn-secondary fw-bold"><i class="fas fa-filter me-1"></i> Filter</button>
                     <button type="submit" name="export" value="pdf" class="btn btn-danger fw-bold"><i class="fas fa-file-pdf me-1"></i> Export PDF</button>
-                    <button type="submit" name="export" value="excel" class="btn btn-success fw-bold"><i class="fas fa-file-excel me-1"></i> Export Excel (CSV)</button>
+                    <button type="submit" name="export" value="excel" class="btn btn-success fw-bold"><i class="fas fa-file-excel me-1"></i> Export Excel</button>
                 </div>
             </div>
         </form>

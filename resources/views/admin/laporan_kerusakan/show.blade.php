@@ -9,10 +9,6 @@
             <a href="{{ route('admin.laporan_kerusakan.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
         </div>
         
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-bordered">

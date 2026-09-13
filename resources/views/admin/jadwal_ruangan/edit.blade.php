@@ -5,9 +5,6 @@
 <div class="card card-stat bg-white mb-4">
     <div class="card-body">
         <h5 class="card-title fw-bold text-success mb-4">Form Edit Jadwal</h5>
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
         <form action="{{ route('admin.jadwal_ruangan.update', $jadwalRuangan->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -33,14 +30,14 @@
                     @error('tanggal') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="waktu_mulai" class="form-label fw-bold">Waktu Mulai</label>
-                    <input type="time" class="form-control @error('waktu_mulai') is-invalid @enderror" id="waktu_mulai" name="waktu_mulai" value="{{ old('waktu_mulai', \Carbon\Carbon::parse($jadwalRuangan->waktu_mulai)->format('H:i')) }}" required>
-                    @error('waktu_mulai') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <label for="jam_mulai" class="form-label fw-bold">Jam Mulai</label>
+                    <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" id="jam_mulai" name="jam_mulai" value="{{ old('jam_mulai', \Carbon\Carbon::parse($jadwalRuangan->jam_mulai)->format('H:i')) }}" required>
+                    @error('jam_mulai') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="waktu_selesai" class="form-label fw-bold">Waktu Selesai</label>
-                    <input type="time" class="form-control @error('waktu_selesai') is-invalid @enderror" id="waktu_selesai" name="waktu_selesai" value="{{ old('waktu_selesai', \Carbon\Carbon::parse($jadwalRuangan->waktu_selesai)->format('H:i')) }}" required>
-                    @error('waktu_selesai') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <label for="jam_selesai" class="form-label fw-bold">Jam Selesai</label>
+                    <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror" id="jam_selesai" name="jam_selesai" value="{{ old('jam_selesai', \Carbon\Carbon::parse($jadwalRuangan->jam_selesai)->format('H:i')) }}" required>
+                    @error('jam_selesai') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
             <div class="mb-4">
@@ -56,3 +53,4 @@
     </div>
 </div>
 @endsection
+

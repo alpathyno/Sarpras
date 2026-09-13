@@ -29,12 +29,6 @@
                 </div>
             </div>
         </form>
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-light">
@@ -55,11 +49,11 @@
                         <td class="fw-bold text-success">{{ $j->ruangan->nama_ruangan }} <br><small class="text-muted">{{ $j->ruangan->lantai->gedung->nama }}</small></td>
                         <td class="fw-bold">{{ $j->kegiatan }}</td>
                         <td>{{ \Carbon\Carbon::parse($j->tanggal)->format('d M Y') }}</td>
-                        <td><span class="badge bg-secondary">{{ \Carbon\Carbon::parse($j->waktu_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($j->waktu_selesai)->format('H:i') }}</span></td>
+                        <td><span class="badge bg-secondary">{{ \Carbon\Carbon::parse($j->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($j->jam_selesai)->format('H:i') }}</span></td>
                         <td>{{ $j->keterangan ?? '-' }}</td>
                         <td class="text-center">
                             <a href="{{ route('admin.jadwal_ruangan.edit', $j->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('admin.jadwal_ruangan.destroy', $j->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin menghapus jadwal ini?');">
+                            <form action="{{ route('admin.jadwal_ruangan.destroy', $j->id) }}" method="POST" class="d-inline form-delete">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
@@ -80,3 +74,4 @@
     </div>
 </div>
 @endsection
+

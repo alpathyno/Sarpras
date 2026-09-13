@@ -50,8 +50,8 @@ class AdminPeminjamanController extends Controller
                 $konflikJadwal = JadwalRuangan::where('ruangan_id', $ruangan_id)
                     ->where('tanggal', $currentDate)
                     ->where(function($q) use ($tglMulai, $tglSelesai) {
-                        $q->whereTime('waktu_mulai', '<', $tglSelesai->format('H:i:s'))
-                          ->whereTime('waktu_selesai', '>', $tglMulai->format('H:i:s'));
+                        $q->whereTime('jam_mulai', '<', $tglSelesai->format('H:i:s'))
+                          ->whereTime('jam_selesai', '>', $tglMulai->format('H:i:s'));
                     })->exists();
                     
                 if ($konflikJadwal) {
@@ -92,10 +92,19 @@ class AdminPeminjamanController extends Controller
             'catatan' => $request->catatan
         ]);
 
+        $namaItem = '';
+        if ($peminjaman->jenis === 'ruangan') {
+            $namaItem = $peminjaman->details->first()->ruangan->nama_ruangan;
+        } else {
+            $detail = $peminjaman->details->first();
+            $jumlahText = $detail->jumlah > 1 ? ' (' . $detail->jumlah . ' unit)' : '';
+            $namaItem = $detail->aset->nama_aset . $jumlahText;
+        }
+
         Notifikasi::create([
             'user_id' => $peminjaman->user_id,
             'judul' => 'Peminjaman Disetujui',
-            'pesan' => 'Permohonan peminjaman #' . $peminjaman->id . ' telah disetujui.',
+            'pesan' => 'Peminjaman ' . $namaItem . ' telah disetujui.',
             'dibaca' => false
         ]);
 
@@ -112,10 +121,19 @@ class AdminPeminjamanController extends Controller
             'catatan' => $request->catatan
         ]);
 
+        $namaItem = '';
+        if ($peminjaman->jenis === 'ruangan') {
+            $namaItem = $peminjaman->details->first()->ruangan->nama_ruangan;
+        } else {
+            $detail = $peminjaman->details->first();
+            $jumlahText = $detail->jumlah > 1 ? ' (' . $detail->jumlah . ' unit)' : '';
+            $namaItem = $detail->aset->nama_aset . $jumlahText;
+        }
+
         Notifikasi::create([
             'user_id' => $peminjaman->user_id,
             'judul' => 'Peminjaman Ditolak',
-            'pesan' => 'Permohonan peminjaman #' . $peminjaman->id . ' ditolak. Catatan: ' . $request->catatan,
+            'pesan' => 'Peminjaman ' . $namaItem . ' ditolak. Catatan: ' . $request->catatan,
             'dibaca' => false
         ]);
 

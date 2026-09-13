@@ -9,10 +9,6 @@
             <a href="{{ route('admin.peminjaman.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
         </div>
         
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-bordered">
@@ -94,16 +90,32 @@
                 
                 <script>
                     function submitApprove() {
-                        if(confirm('Yakin ingin menyetujui peminjaman ini? Pastikan tidak ada jadwal yang bentrok.')) {
-                            document.getElementById('catatan-approve').value = document.getElementById('input-catatan').value;
-                            document.getElementById('form-approve').submit();
-                        }
+                        showConfirmModal({
+                            title: 'Setujui Peminjaman?',
+                            message: 'Apakah Anda yakin ingin menyetujui peminjaman ini? Pastikan tidak ada jadwal yang bentrok.',
+                            btnText: 'Setujui',
+                            btnClass: 'btn-success',
+                            iconClass: 'fas fa-check-circle',
+                            iconBg: 'icon-success',
+                            onConfirm: function() {
+                                document.getElementById('catatan-approve').value = document.getElementById('input-catatan').value;
+                                document.getElementById('form-approve').submit();
+                            }
+                        });
                     }
                     function submitReject() {
-                        if(confirm('Yakin ingin menolak peminjaman ini?')) {
-                            document.getElementById('catatan-reject').value = document.getElementById('input-catatan').value;
-                            document.getElementById('form-reject').submit();
-                        }
+                        showConfirmModal({
+                            title: 'Tolak Peminjaman?',
+                            message: 'Apakah Anda yakin ingin menolak peminjaman ini?',
+                            btnText: 'Tolak',
+                            btnClass: 'btn-danger',
+                            iconClass: 'fas fa-times-circle',
+                            iconBg: 'icon-danger',
+                            onConfirm: function() {
+                                document.getElementById('catatan-reject').value = document.getElementById('input-catatan').value;
+                                document.getElementById('form-reject').submit();
+                            }
+                        });
                     }
                 </script>
                 @endif
