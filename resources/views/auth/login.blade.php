@@ -21,7 +21,7 @@
         </h1>
 
         <p class="login-desc">
-            Sistem informasi untuk pengelolaan sarana dan prasarana di lingkungan Fakultas Ilmu Komputer. Lebih terorganisir, lebih efisien, lebih baik.
+            Sistem informasi untuk pengelolaan sarana dan prasarana di lingkungan Fakultas Ilmu Komputer. Lebih terorganisir, lebih efisien, dan lebih baik.
         </p>
 
         <div class="login-features">
