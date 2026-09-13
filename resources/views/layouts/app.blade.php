@@ -22,9 +22,6 @@
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <div class="sidebar-brand-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
                     <div class="sidebar-brand-text">
                         SIM Sarpras
                         <small>Sarana & Prasarana</small>
@@ -33,7 +30,7 @@
 
                 <nav class="sidebar-nav">
                     <a href="{{ route('dashboard') }}" class="sidebar-nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-th-large"></i>Dashboard
+                        Dashboard
                     </a>
 
                     @if(auth()->user()->role === 'admin')
@@ -85,13 +82,13 @@
                     @if(auth()->user()->role !== 'admin')
                         <div class="sidebar-section-label">Layanan</div>
                         <a href="{{ route('user.jadwal.index') }}" class="sidebar-nav-item {{ request()->routeIs('user.jadwal.*') ? 'active' : '' }}">
-                            <i class="fas fa-calendar-day"></i>Lihat Jadwal
+                            Lihat Jadwal
                         </a>
                         <a href="{{ route('user.peminjaman.index') }}" class="sidebar-nav-item {{ request()->routeIs('user.peminjaman.*') ? 'active' : '' }}">
-                            <i class="fas fa-hand-holding"></i>Peminjaman
+                            Peminjaman
                         </a>
                         <a href="{{ route('user.laporan_kerusakan.index') }}" class="sidebar-nav-item {{ request()->routeIs('user.laporan_kerusakan.*') ? 'active' : '' }}">
-                            <i class="fas fa-bullhorn"></i>Lapor Kerusakan
+                            Lapor Kerusakan
                         </a>
                     @endif
                 </nav>

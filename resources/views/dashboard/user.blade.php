@@ -88,7 +88,7 @@
                                     @else <span class="badge bg-danger">Ditolak</span> @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('user.peminjaman.show', $p->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-eye me-1"></i>Detail</a>
+                                    <a href="{{ route('user.peminjaman.show', $p->id) }}" class="btn btn-sm btn-outline-success"></i>Detail</a>
                                 </td>
                             </tr>
                             @empty

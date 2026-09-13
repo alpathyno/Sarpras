@@ -53,7 +53,7 @@ body {
    SIDEBAR
    ============================================ */
 #sidebar-wrapper {
-    min-height: 100vh;
+    height: 100vh;
     width: var(--sidebar-width);
     margin-left: calc(-1 * var(--sidebar-width));
     transition: margin var(--transition);
@@ -62,20 +62,8 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.15) transparent;
-}
-#sidebar-wrapper::-webkit-scrollbar {
-    width: 4px;
-}
-#sidebar-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-}
-#sidebar-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.15);
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Sidebar brand / logo area */
@@ -117,6 +105,21 @@ body {
 /* Sidebar navigation */
 .sidebar-nav {
     padding: 0.75rem 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
 }
 .sidebar-section-label {
     padding: 1rem 1.25rem 0.4rem;
